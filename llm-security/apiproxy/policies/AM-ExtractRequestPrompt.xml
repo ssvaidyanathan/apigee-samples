@@ -16,7 +16,7 @@
   <Properties/>
   <AssignVariable>
     <Name>request_jsonpath</Name>
-    <Value>$.contents.parts[*].text</Value>
+    <Value>$.contents[*].parts[*].text</Value>
   </AssignVariable>
   <AssignVariable>
     <Name>request_prompt_value</Name>

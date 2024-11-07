@@ -44,10 +44,10 @@ delete_sharedflow(){
   local sharedflow_name=$1
   echo "Undeploying $sharedflow_name sharedflow"
   REV=$(apigeecli envs deployments get --env "$APIGEE_ENV" --org "$PROJECT_ID" --token "$TOKEN" --sharedflows true --disable-check | jq .'deployments[]| select(.apiProxy=="'"$sharedflow_name"'").revision' -r)
-  apigeecli sharedflows undeploy --name $sharedflow_name --env "$APIGEE_ENV" --rev "$REV" --org "$PROJECT_ID" --token "$TOKEN"
+  apigeecli sharedflows undeploy --name "$sharedflow_name" --env "$APIGEE_ENV" --rev "$REV" --org "$PROJECT_ID" --token "$TOKEN"
 
   echo "Deleting sharedflow $sharedflow_name sharedflow"
-  apigeecli sharedflows delete --name $sharedflow_name --org "$PROJECT_ID" --token "$TOKEN"
+  apigeecli sharedflows delete --name "$sharedflow_name" --org "$PROJECT_ID" --token "$TOKEN"
 }
 
 remove_role_from_service_account() {

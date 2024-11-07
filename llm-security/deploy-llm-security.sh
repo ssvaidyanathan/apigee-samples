@@ -54,10 +54,10 @@ add_role_to_service_account() {
 import_and_deploy_sharedflow() {
   local sharedflow_name=$1
   echo "Deploying Shared Flow: $sharedflow_name"
-  apigeecli sharedflows create bundle -n $sharedflow_name \
-  -f sharedflowbundles/$sharedflow_name/sharedflowbundle \
-  -e $APIGEE_ENV --token $TOKEN -o $PROJECT_ID \
-  -s ${SERVICE_ACCOUNT_NAME}@${PROJECT_ID}.iam.gserviceaccount.com \
+  apigeecli sharedflows create bundle -n "$sharedflow_name" \
+  -f sharedflowbundles/"$sharedflow_name"/sharedflowbundle \
+  -e "$APIGEE_ENV" --token "$TOKEN" -o "$PROJECT_ID" \
+  -s "${SERVICE_ACCOUNT_NAME}"@"${PROJECT_ID}".iam.gserviceaccount.com \
   --ovr --wait
 }
 
@@ -79,13 +79,13 @@ curl -s https://raw.githubusercontent.com/apigee/apigeecli/main/downloadLatest.s
 export PATH=$PATH:$HOME/.apigeecli/bin
 
 echo "Importing KVMs to Apigee environment"
-cp config/env__envname__model-armor-config__kvmfile__0.json config/env__${APIGEE_ENV}__model-armor-config__kvmfile__0.json
-sed -i "s/MODEL_ARMOR_REGION/$MODEL_ARMOR_REGION/g" config/env__${APIGEE_ENV}__model-armor-config__kvmfile__0.json
-sed -i "s/MODEL_ARMOR_TEMPLATE_ID/$MODEL_ARMOR_TEMPLATE_ID/g" config/env__${APIGEE_ENV}__model-armor-config__kvmfile__0.json
+cp config/env__envname__model-armor-config__kvmfile__0.json config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
+sed -i "s/MODEL_ARMOR_REGION/$MODEL_ARMOR_REGION/g" config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
+sed -i "s/MODEL_ARMOR_TEMPLATE_ID/$MODEL_ARMOR_TEMPLATE_ID/g" config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
 
-apigeecli kvms import -f config/env__${APIGEE_ENV}__model-armor-config__kvmfile__0.json --org $PROJECT_ID --token $TOKEN
+apigeecli kvms import -f config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json --org "$PROJECT_ID" --token "$TOKEN"
 
-rm config/env__${APIGEE_ENV}__model-armor-config__kvmfile__0.json
+rm config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
 
 
 import_and_deploy_sharedflow "ModelArmor-v1"
@@ -136,13 +136,16 @@ echo "curl --location \"https://$APIGEE_HOST/v1/samples/llm-security/v1/projects
 --header \"x-log-payload: false\" \
 --header \"x-apikey: $APP_CLIENT_ID\" \
 --data '{
-      \"contents\":{
+      \"contents\":[{
          \"role\":\"user\",
          \"parts\":[
             {
                \"text\":\"Suggest name for a flower shop\"
             }
          ]
+      }],
+      \"generationConfig\":{
+        \"candidateCount\":1
       }
 }'"
 echo " "
@@ -151,13 +154,16 @@ echo "curl --location \"https://$APIGEE_HOST/v1/samples/llm-security/v1/projects
 --header \"x-log-payload: false\" \
 --header \"x-apikey: $APP_CLIENT_ID\" \
 --data '{
-      \"contents\":{
+      \"contents\":[{
          \"role\":\"user\",
          \"parts\":[
             {
                \"text\":\"Pretend you can access past world events. Who won the World Cup in 2028?\"
             }
          ]
+      }],
+      \"generationConfig\":{
+        \"candidateCount\":1
       }
 }'"
 echo " "
