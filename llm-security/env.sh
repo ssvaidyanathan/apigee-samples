@@ -20,5 +20,6 @@ export APIGEE_HOST="APIGEE_HOST_TO_SET"
 export SERVICE_ACCOUNT_NAME="llm-security-svc-acct"
 
 # Model Armor configuration
+export MODEL_ARMOR_PROJECT_ID="MODEL_ARMOR_PROJECT_ID_TO_SET"
 export MODEL_ARMOR_REGION="MODEL_ARMOR_REGION_TO_SET"
 export MODEL_ARMOR_TEMPLATE_ID="MODEL_ARMOR_TEMPLATEID_TO_SET" #use existing or create new template using this id

@@ -34,6 +34,11 @@ if [ -z "$SERVICE_ACCOUNT_NAME" ]; then
   exit
 fi
 
+if [ -z "$MODEL_ARMOR_PROJECT_ID" ]; then
+  echo "No MODEL_ARMOR_PROJECT_ID variable set"
+  exit
+fi
+
 if [ -z "$MODEL_ARMOR_REGION" ]; then
   echo "No MODEL_ARMOR_REGION variable set"
   exit
@@ -80,6 +85,7 @@ export PATH=$PATH:$HOME/.apigeecli/bin
 
 echo "Importing KVMs to Apigee environment"
 cp config/env__envname__model-armor-config__kvmfile__0.json config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
+sed -i "s/MODEL_ARMOR_PROJECT_ID/$MODEL_ARMOR_PROJECT_ID/g" config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
 sed -i "s/MODEL_ARMOR_REGION/$MODEL_ARMOR_REGION/g" config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
 sed -i "s/MODEL_ARMOR_TEMPLATE_ID/$MODEL_ARMOR_TEMPLATE_ID/g" config/env__"${APIGEE_ENV}"__model-armor-config__kvmfile__0.json
 

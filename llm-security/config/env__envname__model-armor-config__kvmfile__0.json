@@ -2,7 +2,7 @@
     "keyValueEntries": [
       {
         "name": "modelArmorUrl",
-        "value": "modelarmor.MODEL_ARMOR_REGION.rep.googleapis.com/v1alpha/projects/modelarmor-api-test/locations/MODEL_ARMOR_REGION/templates/"
+        "value": "modelarmor.MODEL_ARMOR_REGION.rep.googleapis.com/v1alpha/projects/MODEL_ARMOR_PROJECT_ID/locations/MODEL_ARMOR_REGION/templates/"
       },
       {
           "name": "templateId",
