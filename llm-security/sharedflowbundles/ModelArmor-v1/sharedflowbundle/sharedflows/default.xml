@@ -28,6 +28,27 @@
     <Condition>type = "response-prompt"</Condition>
   </Step>
   <Step>
-    <Name>JS-ProcessModelArmorResponse</Name>
+    <Name>EV-ModelArmorResponse</Name>
+    <Condition>modelArmorResponse.content != null</Condition>
+  </Step>
+  <Step>
+    <Name>RF-CSAM-Detected</Name>
+    <Condition>csam = "MATCH_FOUND"</Condition>
+  </Step>
+  <Step>
+    <Name>RF-MaliciousURL-Detected</Name>
+    <Condition>maliciousURL = "MATCH_FOUND"</Condition>
+  </Step>
+  <Step>
+    <Name>RF-RAI-Detected</Name>
+    <Condition>rai = "MATCH_FOUND"</Condition>
+  </Step>
+  <Step>
+    <Name>RF-PIAndJailbreak-Detected</Name>
+    <Condition>piAndJailbreak = "MATCH_FOUND"</Condition>
+  </Step>
+  <Step>
+    <Name>RF-SDP-Detected</Name>
+    <Condition>sdp = "MATCH_FOUND"</Condition>
   </Step>
 </SharedFlow>

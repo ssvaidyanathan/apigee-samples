@@ -11,8 +11,22 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-ProcessModelArmorResponse">
-  <DisplayName>JS-ProcessModelArmorResponse</DisplayName>
+<RaiseFault continueOnError="false" enabled="true" name="RF-RAI-Detected">
+  <DisplayName>RF-RAI-Detected</DisplayName>
   <Properties/>
-  <ResourceURL>jsc://JS-ProcessModelArmorResponse.js</ResourceURL>
-</Javascript>
+  <FaultResponse>
+    <Set>
+      <Payload contentType="application/json">{
+        "error": {
+          "code": 400,
+          "message": "RAI Threat Detected",
+          "status": "BAD_REQUEST"
+        }
+      }
+      </Payload>
+      <StatusCode>400</StatusCode>
+      <ReasonPhrase>Bad Request</ReasonPhrase>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

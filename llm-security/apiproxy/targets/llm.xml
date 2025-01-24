@@ -21,7 +21,7 @@
     <PostFlow name="PostFlow">
         <Request>
             <Step>
-                <Name>JS-DecodeURI</Name>
+                <Name>AM-SetTarget</Name>
             </Step>
         </Request>
         <Response/>

@@ -34,10 +34,6 @@
             <Step>
                 <Name>FC-SanitizeUserPrompt</Name>
             </Step>
-            <Step>
-                <Name>RF-PromptSanitizationFailed</Name>
-                <Condition>modelArmorCheckFailed = true</Condition>
-            </Step>
         </Request>
         <Response>
             <Step>
@@ -45,10 +41,6 @@
             </Step>
             <Step>
                 <Name>FC-SanitizeModelResponse</Name>
-            </Step>
-            <Step>
-                <Name>RF-PromptSanitizationFailed</Name>
-                <Condition>modelArmorCheckFailed = true</Condition>
             </Step>
         </Response>
     </PreFlow>

@@ -11,12 +11,17 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-DecodeURI">
-  <DisplayName>JS-DecodeURI</DisplayName>
+<AssignMessage continueOnError="false" enabled="true" name="AM-SetTarget">
+  <DisplayName>AM-SetTarget</DisplayName>
   <Properties/>
-  <Source>
-    var host = "https://"+context.getVariable("region")+"-aiplatform.googleapis.com";
-    var proxyPathSuffix = decodeURIComponent(context.getVariable("proxy.pathsuffix"));
-    context.setVariable("target.url", host+proxyPathSuffix);
-  </Source>
-</Javascript>
+  <AssignVariable>
+    <Name>targetUrl</Name>
+    <Value>https://{region}-aiplatform.googleapis.com/{proxy.pathsuffix}</Value>
+  </AssignVariable>
+  <AssignVariable>
+    <Name>target.url</Name>
+    <Template ref="targetUrl"/>
+  </AssignVariable>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
